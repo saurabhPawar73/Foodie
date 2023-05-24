@@ -1,0 +1,6 @@
+#myDiv {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4555/4555971.png');
+    /* Additional properties for styling */
+    
+    background-size: cover; /* Adjusts the size of the background image */
+  }

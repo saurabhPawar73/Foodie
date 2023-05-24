@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" style="background-color:black">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="color: azure;" >
+        <img src="https://cdn.dribbble.com/users/4987860/screenshots/15665665/foodie.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top" style="height: 45px; width: auto;">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/" style="color:azure"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon></a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link active" aria-current="page" routerLink="/user" *ngIf="userservice.matchRole('user')" style="color: azure;">User Dashboard</a>
+          </li><li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/admin" style="color: azure;"
+            *ngIf="userservice.matchRole('admin')">
+            Admin Dashboard</a>
+          </li>
+         
+        </ul>
+        <div style="display:block; justify-content: space-between;">
+          <button *ngIf="!checkLogin()" type="button" class="btn btn-success" style="margin-right: 20px;" routerLink="/signup">Sign Up</button>
+          <button *ngIf="!checkLogin()" type="button" class="btn btn-success" style="margin-right: 20px;" routerLink="/login">Login</button>
+        <button *ngIf="checkLogin()" type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+        </div>
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- <button style="height: 2rem;" mat-raised-button color="primary" >View Cart</button> -->
+  
+    <mat-toolbar style="height: 50px" *ngIf="userservice.matchRole('user')">
+      <button mat-fab extended color="primary" style="height: 2rem" (click)="toCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+        My Cart
+      </button>
+      &nbsp;
+      <button mat-raised-button color="accent" style="border-radius: 20px; height: 2rem;" routerLink="/myOrders">My Orders</button>
+</mat-toolbar>
+
+  <mat-toolbar color="black" *ngIf="userservice.matchRole('admin')">
+        <button mat-raised-button color="primary" routerLink="/addDish">Add Dish</button>
+        <button mat-raised-button color="primary" routerLink="/displayDishes" style="margin-left: 20px; background-color: orange;">Display all dishes</button>
+        <button mat-raised-button color="primary" routerLink="/viewOrders" style="margin-left: 20px; background-color: indianred;">View Orders</button>
+
+  </mat-toolbar>

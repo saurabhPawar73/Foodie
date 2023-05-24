@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <div class="card p-2">
+    <div class="row">
+      <div class="col-6">
+        <form #addDishForm="ngForm" (ngSubmit)="addDish(addDishForm)">
+          <p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Dish Name</mat-label>
+              <input matInput placeholder="enter dish name" [(ngModel)]="dish.dishName" name="dishName">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Dish Price</mat-label>
+              <input matInput placeholder="Dish Price" [(ngModel)]="dish.dishPrice" name="dishPrice">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Dish Description</mat-label>
+              <input matInput placeholder="Dish Description" [(ngModel)]="dish.dishDescription" name="dishDescription">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Vendor</mat-label>
+              <input matInput placeholder="Enter Vendor Name" [(ngModel)]="dish.vendor" name="vendor">
+              <mat-hint>Restaurant name/ Hotel name</mat-hint>
+            </mat-form-field>
+          </p>
+          <div align="end" style="align-items: flex-end;">
+
+            <button type="submit" *ngIf="isNewDish" mat-stroked-button color="primary"
+              style="color: green; margin-right: 10px;">Add Dish</button>
+            <button type="submit" *ngIf="!isNewDish" mat-stroked-button color="primary"
+              style="color: green; margin-right: 10px;">Update Dish</button>
+            <button type="reset" mat-stroked-button color="primary" style="color: red;">Clear</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="col-6">
+        <input type="file" value="select" #selectFile (change)="onFileSelect($event)">
+        <div class="mt-5">
+          <div class="row">
+            <mat-card class="example-card">
+              <mat-card-content *ngFor="let image of dish.dishImages; let i=index;" style="border: 1px solid bisque;">
+                <div style="position: relative;">
+                  <span align="end" class="btn-remove-image" style="height: 200px; width: 200px;" (click)="removeImg(i)">X</span>
+                  <img [src]="image.url" style="height: 200px; width: 200px;">
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

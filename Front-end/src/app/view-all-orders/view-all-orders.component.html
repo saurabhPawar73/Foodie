@@ -1,0 +1,65 @@
+<div class="container mt-4">
+<div class="mb-3 text-center"> <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
+  <mat-button-toggle style="color: mediumblue;" value="All" (click)="getAllOrders('all')">All</mat-button-toggle>
+  <mat-button-toggle style="color: brown;" value="Placed" (click)="getAllOrders('Placed')" >Placed</mat-button-toggle>
+  <mat-button-toggle value="Delivered" style="color: green;" (click)="getAllOrders('Delivered')">Delivered</mat-button-toggle>
+</mat-button-toggle-group></div>  
+ 
+
+    <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->      
+              <ng-container matColumnDef="Order ID">
+                <th mat-header-cell *matHeaderCellDef> Order ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
+              </ng-container>
+    
+              
+            <ng-container matColumnDef="Orderer">
+                <th mat-header-cell *matHeaderCellDef> Orderer </th>
+                <td mat-cell *matCellDef="let element"> {{element.ordererFullName}} </td>
+              </ng-container>
+    
+              
+            <ng-container matColumnDef="Address">
+                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <td mat-cell *matCellDef="let element"> {{element.orderFullAddress}} </td>
+              </ng-container>
+    
+              
+            <ng-container matColumnDef="Contact Number">
+                <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.ordererContactNo}} </td>
+              </ng-container>
+    
+              
+            <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.orderStatus}} </td>
+              </ng-container>
+    
+              
+            <ng-container matColumnDef="Amount">
+                <th mat-header-cell *matHeaderCellDef> Amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.orderTotalAmount}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="Dish">
+                <th mat-header-cell *matHeaderCellDef> Dish </th>
+                <td mat-cell *matCellDef="let element"> {{element.dish.dishName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Action"
+             >
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element"> <button  *ngIf="element.orderStatus== 'Placed'" style="font-size: small; background-color: chocolate; color: white;" mat-raised-button (click)="markAsDelivered(element.orderId)">Mark as Delivered
+                 </button></td>
+              </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+</div>
+
+  

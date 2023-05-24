@@ -1,0 +1,9 @@
+.btn-remove-image{
+    cursor: pointer;
+    
+    top: -20px;
+    right: -20px;
+    background-color: darkorange;
+    color: white;
+    border-radius: 30%;
+}

@@ -1,0 +1,43 @@
+<!-- <div class="container mt-5">
+    <mat-grid-list cols="4" rowHeight="2:2" gutterSize="10">
+        <mat-grid-tile *ngFor="let d of dishDetails">
+            <div class="row"> 
+                <img [src]="d.dishImages[0].url" alt="">
+               <div class="container mt-3" style="text-align: center;">
+                <p><b>{{d.dishName}}</b></p>
+               </div>
+            </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      
+ 
+</div> -->
+<div class="container mt-3 row ">
+  <div class="text-center">
+    <mat-form-field appearance="outline" class="w-50">
+      <mat-label>Search any dish, restaurant</mat-label>
+      <input name="searchKey" id="searchKey"
+      #searchWord
+      (keyup)="searchByKey(searchWord.value)"
+      matInput placeholder="Search any dish, restaurant">
+  </mat-form-field>
+  </div>
+ 
+  <div class="card" style="width: 15rem; margin: 10px;;" *ngFor="let d of dishDetails">
+    <div class="image-container"><img [src]="d.dishImages[0].url" style="height: 8rem; width: 10rem;"
+        class="card-img-top" alt="..."></div>
+
+    <div class="card-body" style="text-align: center;">
+      <h5 style="font-size:medium" class="card-title">{{d.dishName}}</h5>
+      {{d.vendor}}
+      <p class="card-text">Rs. {{d.dishPrice}}/-</p>
+      <div class="container mt-2">
+        <!-- <a class="btn btn-btn-primary btn-sm" ></a></div> -->
+        <button mat-button color="warn" (click)="viewDetails(d.dishId)">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="button" mat-raised-button color="primary" (click)="loadMoreDishes()">Load More</button>
+  </div>
+  </div>
